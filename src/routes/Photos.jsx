@@ -4,12 +4,10 @@ import Card from "../components/Card";
 
 const Photos = () => {
   const [photos, setPhotos] = useState([]);
-  const [sort, setSort] = useState("asc");
-  const [submited, setSubmited] = useState("");
-  const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
+
+
+  const [loading, setLoading] = useState(false);
 
   const deletePhoto = (id) => {
     // TODO: answer here
@@ -24,28 +22,7 @@ const Photos = () => {
   });
   };
 
-  useEffect(() => {
-    setLoading(true);
-    // TODO: answer here
-      // mengset data dengan url 
-      const SetParams = { _sort: "id", _order: `${sort}`, q: `${submited}` }
-    const URLParams = new URLSearchParams(SetParams);
-      fetch(`https://gallery-app-server.vercel.app/photos?${URLParams}`)
-        .then((res) => res.json())
-        .then((json) => {
-          setPhotos(json);
-          setLoading(false);
-        })
-        .catch((error) => {
-          // set error
-          setError(error);
-          // set loading menjadi false
-          setLoading(false);
-        });
-    
-    
-  }, [sort, submited]);
-
+  
   useEffect(() => {
     setLoading(true);
     // TODO: answer here
@@ -56,12 +33,12 @@ const Photos = () => {
       setLoading(false)
   }, []);
 
-  if (error) return <h1 style={{ width: "100%", textAlign: "center", marginTop: "20px" }} >Error!</h1>;
+ 
 
   return (
     <>
       <div className="container">
-        <div className="options">
+        {/* <div className="options">
           <select
             onChange={(e) => setSort(e.target.value)}
             data-testid="sort"
@@ -90,7 +67,7 @@ const Photos = () => {
               className="form-btn"
             />
           </form>
-        </div>
+        </div> */}
         <div className="content">
           {loading ? (
             <h1
